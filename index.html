@@ -28,12 +28,13 @@
     [data-facts] > div { padding: var(--space-4) 0 !important; border-right: 0 !important; }
     [data-wrap] { flex-wrap: wrap !important; }
     [data-shell] { padding: 0 var(--space-4) !important; }
+    [data-bleed] { margin: 0 calc(-1 * var(--space-4)) !important; padding: var(--space-4) !important; }
   }
 </style>
 </helmet>
 <div data-shell="" style="max-width: 1240px; margin: 0 auto; padding: 0 var(--space-8);">
 
-  <header class="nav" data-wrap="" style="position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); padding: var(--space-4) 0; background: var(--color-bg); border-bottom: 2px solid var(--color-divider);">
+  <header class="nav" data-wrap="" data-bleed="" style="position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); margin: 0 calc(-1 * var(--space-8)); padding: var(--space-4) var(--space-8); background: var(--color-bg); border-bottom: 2px solid var(--color-divider);">
     <a class="nav-brand" href="#top" style="display: flex; align-items: baseline; gap: var(--space-3);">
       <span style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase;">Elias Dridi</span>
       <span style="font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700);">Technical Animator</span>
