@@ -110,7 +110,7 @@
             {{ c.fileEl }}
           </sc-if>
           <sc-if value="{{ c.hasImage }}" hint-placeholder-val="{{ false }}">
-            <button type="button" onClick="{{ c.expand }}" aria-label="{{ c.title }}" title="Click to expand" style="width: 100%; aspect-ratio: 16/9; padding: 0; border: 2px solid var(--color-divider); cursor: zoom-in; background-color: var(--color-surface); background-image: {{ c.imageCss }}; background-size: cover; background-position: center; display: block;"></button>
+            <button type="button" onClick="{{ c.expand }}" aria-label="{{ c.title }}" title="Click to expand" style="{{ c.imgStyle }}"></button>
           </sc-if>
           <sc-if value="{{ c.noMedia }}" hint-placeholder-val="{{ true }}">
             <div class="grayscale" style="aspect-ratio: 16/9; background: repeating-linear-gradient(135deg, var(--color-surface) 0 14px, var(--color-bg) 14px 28px); border: 2px solid var(--color-divider); display: grid; place-items: center;">
@@ -138,7 +138,7 @@
             {{ c.fileEl }}
           </sc-if>
           <sc-if value="{{ c.hasImage }}" hint-placeholder-val="{{ false }}">
-            <button type="button" onClick="{{ c.expand }}" aria-label="{{ c.title }}" title="Click to expand" style="width: 100%; aspect-ratio: 16/9; padding: 0; border: 2px solid var(--color-divider); cursor: zoom-in; background-color: var(--color-surface); background-image: {{ c.imageCss }}; background-size: cover; background-position: center; display: block;"></button>
+            <button type="button" onClick="{{ c.expand }}" aria-label="{{ c.title }}" title="Click to expand" style="{{ c.imgStyle }}"></button>
           </sc-if>
           <sc-if value="{{ c.noMedia }}" hint-placeholder-val="{{ true }}">
             <div class="grayscale" style="aspect-ratio: 16/9; background: repeating-linear-gradient(135deg, var(--color-surface) 0 14px, var(--color-bg) 14px 28px); border: 2px solid var(--color-divider); display: grid; place-items: center;">
@@ -153,7 +153,7 @@
   <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
     <div onClick="{{ closeLightbox }}" style="position: fixed; inset: 0; z-index: 90; background: rgba(32, 30, 29, 0.94); display: grid; place-items: center; padding: var(--space-6); cursor: zoom-out;">
       <sc-if value="{{ lightboxIsImage }}" hint-placeholder-val="{{ false }}">
-        <div role="img" aria-label="{{ lightboxAlt }}" style="width: 100%; height: 100%; background-image: {{ lightboxCss }}; background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+        <div role="img" aria-label="{{ lightboxAlt }}" style="{{ lightboxStyle }}"></div>
       </sc-if>
       <sc-if value="{{ lightboxIsVideo }}" hint-placeholder-val="{{ false }}">
         {{ lightboxVideoEl }}
@@ -213,13 +213,13 @@ class Component extends DCLogic {
       chapters: chapters.map((c, i) => {
         const vm = (c.video ?? "").match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
         const vid = vm ? vm[1] : "";
-        return { ...c, mediaLeft: i % 2 === 0, mediaRight: i % 2 === 1, hasVideo: !!vid, hasFile: !vid && !!c.file, fileEl: c.file ? React.createElement("video", { src: c.file, controls: true, loop: true, muted: true, playsInline: true, preload: "metadata", style: { width: "100%", aspectRatio: "16/9", objectFit: "cover", display: "block", border: "2px solid var(--color-divider)", background: "var(--color-text)" } }) : null, hasImage: !vid && !c.file && !!c.image, imageCss: c.image ? 'url("' + c.image + '")' : "none", expand: c.image ? () => this.setState({ lightbox: { src: c.image, alt: c.title } }) : undefined, noMedia: !vid && !c.file && !c.image, videoSrc: vid ? "https://www.youtube-nocookie.com/embed/" + vid + "?rel=0&modestbranding=1" : "" };
+        return { ...c, mediaLeft: i % 2 === 0, mediaRight: i % 2 === 1, hasVideo: !!vid, hasFile: !vid && !!c.file, fileEl: c.file ? React.createElement("video", { src: c.file, controls: true, loop: true, muted: true, playsInline: true, preload: "metadata", style: { width: "100%", aspectRatio: "16/9", objectFit: "cover", display: "block", border: "2px solid var(--color-divider)", background: "var(--color-text)" } }) : null, hasImage: !vid && !c.file && !!c.image, imgStyle: { width: "100%", aspectRatio: "16/9", padding: 0, border: "2px solid var(--color-divider)", cursor: "zoom-in", backgroundColor: "var(--color-surface)", backgroundImage: c.image ? 'url("' + c.image + '")' : "none", backgroundSize: "cover", backgroundPosition: "center", display: "block" }, expand: c.image ? () => this.setState({ lightbox: { src: c.image, alt: c.title } }) : undefined, noMedia: !vid && !c.file && !c.image, videoSrc: vid ? "https://www.youtube-nocookie.com/embed/" + vid + "?rel=0&modestbranding=1" : "" };
       }),
       lightboxOpen: !!lb,
       lightboxAlt: lb ? lb.alt : "",
       lightboxIsImage: !!(lb && lb.src),
       lightboxIsVideo: !!(lb && lb.file),
-      lightboxCss: lb && lb.src ? 'url("' + lb.src + '")' : "none",
+      lightboxStyle: { width: "100%", height: "100%", backgroundImage: lb && lb.src ? 'url("' + lb.src + '")' : "none", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center" },
       lightboxVideoEl: lb && lb.file ? React.createElement("video", { src: lb.file, controls: true, autoPlay: true, loop: true, playsInline: true, onClick: (e) => e.stopPropagation(), style: { maxWidth: "100%", maxHeight: "88vh", display: "block", border: "2px solid var(--color-bg)", cursor: "default" } }) : null,
       closeLightbox: () => this.setState({ lightbox: null }),
       hasClip: !!id,
