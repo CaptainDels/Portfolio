@@ -50,7 +50,7 @@
   <section style="padding: 24px 0 var(--space-8); border-bottom: 2px solid var(--color-divider); display: grid; gap: var(--space-6);">
     <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent-700);">Personal project</span>
     <h1 style="margin: 0; font-size: clamp(32px, 4.4vw, 60px); line-height: 0.98;">Bow Procedural System</h1>
-    <p style="margin: 0; font-size: 20px; line-height: 1.5;">A procedural draw and tension system for compound, short and long bows.</p>
+    <p style="margin: 0; font-size: 20px; line-height: 1.5;">As part of a Control Rig exercise, I built a procedural bow that drives limb bending and string tension from a single input, with no baked animation.</p>
     <div style="display: flex; flex-wrap: wrap; gap: var(--space-2);">
       <span class="tag tag-outline">UE5</span>
       <span class="tag tag-outline">Control Rig</span>
@@ -92,37 +92,74 @@
     </sc-if>
   </section>
 
-  <section id="breakdown" style="padding: var(--space-8) 0 var(--space-6); border-bottom: 2px solid var(--color-divider);">
+  <section id="breakdown" style="padding: var(--space-8) 0 var(--space-6);">
     <h2 style="margin: 0; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase;">Breakdown</h2>
   </section>
 
-  <section data-stack="" style="padding: 48px 0; border-bottom: 2px solid var(--color-divider); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8); align-items: start;">
-      <div style="display: grid; gap: var(--space-2); align-content: start;">
-        <div class="grayscale" style="aspect-ratio: 16/9; background: repeating-linear-gradient(135deg, var(--color-surface) 0 14px, var(--color-bg) 14px 28px); border: 2px solid var(--color-divider); display: grid; place-items: center;">
-          <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-700);">Clip or screenshot</span>
+  <sc-for list="{{ chapters }}" as="c" hint-placeholder-count="4">
+    <section data-stack="" style="padding: 48px 0; border-top: 2px solid var(--color-divider); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8); align-items: start;">
+      <sc-if value="{{ c.mediaLeft }}" hint-placeholder-val="{{ true }}">
+        <div style="display: grid; gap: var(--space-2); align-content: start;">
+          <sc-if value="{{ c.hasVideo }}" hint-placeholder-val="{{ false }}">
+            <div style="aspect-ratio: 16/9; border: 2px solid var(--color-divider); background: var(--color-text);">
+              <iframe src="{{ c.videoSrc }}" title="{{ c.title }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" referrerpolicy="strict-origin-when-cross-origin" style="width: 100%; height: 100%; border: 0; display: block;"></iframe>
+            </div>
+          </sc-if>
+          <sc-if value="{{ c.hasFile }}" hint-placeholder-val="{{ false }}">
+            {{ c.fileEl }}
+          </sc-if>
+          <sc-if value="{{ c.hasImage }}" hint-placeholder-val="{{ false }}">
+            <button type="button" onClick="{{ c.expand }}" aria-label="{{ c.title }}" title="Click to expand" style="width: 100%; aspect-ratio: 16/9; padding: 0; border: 2px solid var(--color-divider); cursor: zoom-in; background-color: var(--color-surface); background-image: {{ c.imageCss }}; background-size: cover; background-position: center; display: block;"></button>
+          </sc-if>
+          <sc-if value="{{ c.noMedia }}" hint-placeholder-val="{{ true }}">
+            <div class="grayscale" style="aspect-ratio: 16/9; background: repeating-linear-gradient(135deg, var(--color-surface) 0 14px, var(--color-bg) 14px 28px); border: 2px solid var(--color-divider); display: grid; place-items: center;">
+              <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-700);">Clip or screenshot</span>
+            </div>
+          </sc-if>
         </div>
-        <span style="font-size: 13px; line-height: 1.5; color: var(--color-neutral-700);">Clip or screenshot of this part.</span>
-      </div>
-      <div style="display: grid; gap: var(--space-4); align-content: start;">
-        <h2 style="margin: 0; font-size: clamp(26px, 3.4vw, 42px); line-height: 1.02;">Draw and tension</h2>
-        <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 52ch;">How the string and limbs are driven procedurally as the bow is drawn, and how tension feeds back into the pose rather than being animated by hand.</p>
-        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--color-neutral-700); max-width: 52ch;">Replace this with your own account of the build.</p>
-      </div>
-  </section>
+        <div style="display: grid; gap: var(--space-4); align-content: start;">
+          <h2 style="margin: 0; font-size: clamp(26px, 3.4vw, 42px); line-height: 1.02;">{{ c.title }}</h2>
+          <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 52ch;">{{ c.body }}</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ c.mediaRight }}" hint-placeholder-val="{{ false }}">
+        <div style="display: grid; gap: var(--space-4); align-content: start;">
+          <h2 style="margin: 0; font-size: clamp(26px, 3.4vw, 42px); line-height: 1.02;">{{ c.title }}</h2>
+          <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 52ch;">{{ c.body }}</p>
+        </div>
+        <div style="display: grid; gap: var(--space-2); align-content: start;">
+          <sc-if value="{{ c.hasVideo }}" hint-placeholder-val="{{ false }}">
+            <div style="aspect-ratio: 16/9; border: 2px solid var(--color-divider); background: var(--color-text);">
+              <iframe src="{{ c.videoSrc }}" title="{{ c.title }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" referrerpolicy="strict-origin-when-cross-origin" style="width: 100%; height: 100%; border: 0; display: block;"></iframe>
+            </div>
+          </sc-if>
+          <sc-if value="{{ c.hasFile }}" hint-placeholder-val="{{ false }}">
+            {{ c.fileEl }}
+          </sc-if>
+          <sc-if value="{{ c.hasImage }}" hint-placeholder-val="{{ false }}">
+            <button type="button" onClick="{{ c.expand }}" aria-label="{{ c.title }}" title="Click to expand" style="width: 100%; aspect-ratio: 16/9; padding: 0; border: 2px solid var(--color-divider); cursor: zoom-in; background-color: var(--color-surface); background-image: {{ c.imageCss }}; background-size: cover; background-position: center; display: block;"></button>
+          </sc-if>
+          <sc-if value="{{ c.noMedia }}" hint-placeholder-val="{{ true }}">
+            <div class="grayscale" style="aspect-ratio: 16/9; background: repeating-linear-gradient(135deg, var(--color-surface) 0 14px, var(--color-bg) 14px 28px); border: 2px solid var(--color-divider); display: grid; place-items: center;">
+              <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-700);">Clip or screenshot</span>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+    </section>
+  </sc-for>
 
-  <section data-stack="" style="padding: 48px 0; border-bottom: 2px solid var(--color-divider); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8); align-items: start;">
-      <div style="display: grid; gap: var(--space-4); align-content: start;">
-        <h2 style="margin: 0; font-size: clamp(26px, 3.4vw, 42px); line-height: 1.02;">One system, three bows</h2>
-        <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 52ch;">What had to be parameterised so a compound, a short bow and a long bow could share the same rig logic while keeping their own feel.</p>
-        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--color-neutral-700); max-width: 52ch;">A clip of each bow drawing is the useful evidence here.</p>
-      </div>
-      <div style="display: grid; gap: var(--space-2); align-content: start;">
-        <div class="grayscale" style="aspect-ratio: 16/9; background: repeating-linear-gradient(135deg, var(--color-surface) 0 14px, var(--color-bg) 14px 28px); border: 2px solid var(--color-divider); display: grid; place-items: center;">
-          <span style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-700);">Clip or screenshot</span>
-        </div>
-        <span style="font-size: 13px; line-height: 1.5; color: var(--color-neutral-700);">Clip or screenshot of this part.</span>
-      </div>
-  </section>
+  <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeLightbox }}" style="position: fixed; inset: 0; z-index: 90; background: rgba(32, 30, 29, 0.94); display: grid; place-items: center; padding: var(--space-6); cursor: zoom-out;">
+      <sc-if value="{{ lightboxIsImage }}" hint-placeholder-val="{{ false }}">
+        <div role="img" aria-label="{{ lightboxAlt }}" style="width: 100%; height: 100%; background-image: {{ lightboxCss }}; background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+      </sc-if>
+      <sc-if value="{{ lightboxIsVideo }}" hint-placeholder-val="{{ false }}">
+        {{ lightboxVideoEl }}
+      </sc-if>
+      <button type="button" onClick="{{ closeLightbox }}" style="position: fixed; top: var(--space-6); right: var(--space-6); padding: var(--space-2) var(--space-4); font-family: var(--font-heading); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-bg); background: transparent; border: 2px solid var(--color-bg); cursor: pointer;">Close</button>
+    </div>
+  </sc-if>
 
   <section id="contact" style="padding: 56px 0 96px; display: grid; gap: var(--space-6); justify-items: start; border-top: 2px solid var(--color-divider); margin-top: var(--space-8);">
     <h2 style="margin: 0; font-size: clamp(24px, 3.2vw, 40px); line-height: 1.05;">Contact me</h2>
@@ -138,11 +175,41 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;showcaseUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://youtu.be/W8W29e_X-G0&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Media&quot;}}">
 class Component extends DCLogic {
+  state = { lightbox: null };
+  componentDidMount() {
+    this._esc = (e) => { if (e.key === "Escape") this.setState({ lightbox: null }); };
+    window.addEventListener("keydown", this._esc);
+  }
+  componentWillUnmount() { window.removeEventListener("keydown", this._esc); }
   renderVals() {
+    const chapters = [
+      { title: "String Control", body: "I use a control placed at the string position, with its offset zeroed out, to drive the string.", image: "assets/bow-string-control.png" },
+      { title: "Tense Control", body: "I use a control to handle the bow's tension offset, with the control's own values zeroed out. Its position is purely visual.", image: "assets/bow-tense-control.png" },
+      { title: "String joint offset", body: "I offset the string position by the string control Y position.", image: "assets/bow-string-joint-offset.png" },
+      { title: "Procedural draw", body: "I calculate the draw value and multiply it by the ratio to distribute the rotation. That result is then multiplied by a scalar that defines how much bend we want.", image: "assets/bow-procedural-draw.png" },
+      { title: "Tension Evaluation", body: "I calculate a normalized draw amount by subtracting the initial Y position from the current one and dividing by the maximum draw amount. I then evaluate this value through a curve to drive the tension controller's X position which control the frequency.", image: "assets/bow-tension-evaluation.png" },
+      { title: "Procedural Tension", body: "To apply the tension, I loop through one half of the bow and use the ratio to distribute the offset. I take the tension controller's X position, multiply it by the amplitude, then multiply by the ratio to give the final tension offset for each bone.", image: "assets/bow-procedural-tension.png" },
+      { title: "Compound bow In Engine", body: "In engine view of the Control rig.", file: "assets/bow-compound-in-engine.mp4" },
+      { title: "Recurve Bow In Engine", body: "In engine view of the Control rig.", file: "assets/bow-recurve-in-engine.mp4" },
+      { title: "Long bow In Engine", body: "In engine view of the Control rig.", file: "assets/bow-longbow-in-engine.mp4" }
+    ];
+    const lb = this.state.lightbox;
     const raw = (this.props.showcaseUrl ?? "").trim();
     const m = raw.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
     const id = m ? m[1] : (/^[\w-]{11}$/.test(raw) ? raw : "");
     return {
+      chapters: chapters.map((c, i) => {
+        const vm = (c.video ?? "").match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
+        const vid = vm ? vm[1] : "";
+        return { ...c, mediaLeft: i % 2 === 0, mediaRight: i % 2 === 1, hasVideo: !!vid, hasFile: !vid && !!c.file, fileEl: c.file ? React.createElement("video", { src: c.file, controls: true, loop: true, muted: true, playsInline: true, preload: "metadata", style: { width: "100%", aspectRatio: "16/9", objectFit: "cover", display: "block", border: "2px solid var(--color-divider)", background: "var(--color-text)" } }) : null, hasImage: !vid && !c.file && !!c.image, imageCss: c.image ? 'url("' + c.image + '")' : "none", expand: c.image ? () => this.setState({ lightbox: { src: c.image, alt: c.title } }) : undefined, noMedia: !vid && !c.file && !c.image, videoSrc: vid ? "https://www.youtube-nocookie.com/embed/" + vid + "?rel=0&modestbranding=1" : "" };
+      }),
+      lightboxOpen: !!lb,
+      lightboxAlt: lb ? lb.alt : "",
+      lightboxIsImage: !!(lb && lb.src),
+      lightboxIsVideo: !!(lb && lb.file),
+      lightboxCss: lb && lb.src ? 'url("' + lb.src + '")' : "none",
+      lightboxVideoEl: lb && lb.file ? React.createElement("video", { src: lb.file, controls: true, autoPlay: true, loop: true, playsInline: true, onClick: (e) => e.stopPropagation(), style: { maxWidth: "100%", maxHeight: "88vh", display: "block", border: "2px solid var(--color-bg)", cursor: "default" } }) : null,
+      closeLightbox: () => this.setState({ lightbox: null }),
       hasClip: !!id,
       noClip: !id,
       clipSrc: id ? "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1" : ""

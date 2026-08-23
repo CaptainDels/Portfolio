@@ -65,7 +65,7 @@
         </div>
       </sc-if>
     </div>
-    <p style="margin: 0; font-size: 20px; line-height: 1.5;">An 8 month project built with a team of 21. One line here on the game itself — genre, premise, engine — then what you were responsible for.</p>
+    <p style="margin: 0; font-size: 20px; line-height: 1.5;">Off Gridders was my end-of-year project. The team wanted fully customizable characters assembled from interchangeable modules, each able to carry its own secondary motion, plus two complete locomotion sets: one without the ball and one with it. Most actions also had to played correctly whether the player was idling, running or grinding.</p>
     <div style="display: flex; flex-wrap: wrap; gap: var(--space-2);">
       <span class="tag tag-outline">UE5</span>
       <span class="tag tag-outline">ABP</span>
@@ -204,18 +204,18 @@ class Component extends DCLogic {
   componentWillUnmount() { window.removeEventListener("keydown", this._esc); }
   renderVals() {
     const chapters = [
-      { title: "Concept", body: "Add a short description of this step.", image: "assets/breakdown-concept.webp" },
-      { title: "Skeleton", body: "Add a short description of this step.", image: "assets/breakdown-skeleton.png" },
-      { title: "Pre visualisation", body: "Add a short description of this step.", image: "assets/breakdown-previsualisation.png" },
-      { title: "Module architecture", body: "Add a short description of this step.", image: "assets/breakdown-module-architecture.png" },
-      { title: "BP hierarchy", body: "Add a short description of this step.", image: "assets/breakdown-bp-hierarchy.png" },
-      { title: "Module Anim BP", body: "Add a short description of this step.", image: "assets/breakdown-module-anim-bp.png" },
-      { title: "Module isolated view", body: "Add a short description of this step.", file: "assets/breakdown-module-isolated.mp4" },
-      { title: "Character customization result", body: "Add a short description of this step.", file: "assets/breakdown-customization.mp4" },
-      { title: "Layering logic", body: "Add a short description of this step." },
-      { title: "Layering result", body: "Add a short description of this step." },
-      { title: "Locomotion result", body: "Add a short description of this step." },
-      { title: "Lobby poses", body: "Add a short description of this step.", video: "https://youtu.be/990cm6xC1SM" }
+      { title: "Concept", body: "From the concept phase, characters were created as complete sets with modularity in mind.", image: "assets/breakdown-concept.webp" },
+      { title: "Skeleton", body: "The master skeleton contains 88 bones (60 base bones + 28 twist and adjust bones). This skeleton drives the locomotion movement of the bones.The skeletal mesh used in game is just a simple triangle, since the character is assembled at runtime from its modules and only needs this skeleton to drive bone positions.", image: "assets/breakdown-skeleton.png" },
+      { title: "Pre visualisation", body: "Since the in-game mesh is just a triangle, we made a full-body skinned mesh to preview the output pose inside the main Animation Blueprint.", image: "assets/breakdown-previsualisation.png" },
+      { title: "Module architecture", body: "The module contains the bone hierarchy needed from the master skeleton + additional bones.", image: "assets/breakdown-module-architecture.png" },
+      { title: "BP hierarchy", body: "In the BP hierarchy, the master skeletal mesh is the parent, with the module slot skeletal meshes as children.", image: "assets/breakdown-bp-hierarchy.png" },
+      { title: "Module Anim BP", body: "Each module has its own ABP set in the Post Process ABP of the Skeletal Mesh. We use the copy pose from mesh node to retrieve the bone positions from the locomotion skeletal mesh, then cache that pose for later use. We then have a state machine to mimic the character's main movement states and to have different secondary motion behaviors depending on the state. Inside those states, we only reuse the cached pose. We leverage the State Machine architecture to bind calculation functions to the Update of this node.", image: "assets/breakdown-module-anim-bp.png" },
+      { title: "Module isolated view", body: "The ear flip flop is procedural, based on the player state.", file: "assets/breakdown-module-isolated.mp4" },
+      { title: "Character customization result", body: "In-game character customisation.", file: "assets/breakdown-customization.mp4" },
+      { title: "Layering logic", body: "Layered system based on Callum Longmire Advance Locomotion System.", image: "assets/breakdown-layering-logic.png" },
+      { title: "Layering result", body: "Base run loop anim / Run without ball overlay pose / In game output pose", file: "assets/breakdown-layering-result.mp4" },
+      { title: "Locomotion result", body: "Full locomotion showcase.", video: "https://youtu.be/ZGdEQ3W6AQU" },
+      { title: "Lobby poses", body: "Lobby poses with breathing additive applied.", video: "https://youtu.be/990cm6xC1SM" }
     ];
     const raw = (this.props.trailerUrl ?? "").trim();
     const m = raw.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
