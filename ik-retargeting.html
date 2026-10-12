@@ -184,10 +184,10 @@ class Component extends DCLogic {
   componentWillUnmount() { window.removeEventListener("keydown", this._esc); }
   renderVals() {
     const chapters = [
-      { title: "Synty IK Rig", body: "Full Body IK solver setup of the Synty character.", image: "assets/ik-synty-rig.png" },
-      { title: "ALS IK Rig", body: "Full Body IK solver setup of the ALS character.", image: "assets/ik-als-rig.png" },
-      { title: "Size Comparaison", body: "Size comparison of the 2 IK Rigs. Making sure both rigs are similar in size is important for biped retargeting.", image: "assets/ik-size-comparison.png" },
-      { title: "OP Stack", body: "The IK Retargeter contains 4 solvers: a scale one to make sure the source and the target have the same size, a pelvis motion, and an FK and an IK Op.", image: "assets/ik-op-stack.png" }
+      { title: "Synty IK Rig", body: "Full Body IK solver setup of the Synty character.", image: "assets/ik-synty-rig.webp" },
+      { title: "ALS IK Rig", body: "Full Body IK solver setup of the ALS character.", image: "assets/ik-als-rig.webp" },
+      { title: "Size Comparaison", body: "Size comparison of the 2 IK Rigs. Making sure both rigs are similar in size is important for biped retargeting.", image: "assets/ik-size-comparison.webp" },
+      { title: "OP Stack", body: "The IK Retargeter contains 4 solvers: a scale one to make sure the source and the target have the same size, a pelvis motion, and an FK and an IK Op.", image: "assets/ik-op-stack.webp" }
     ];
     const lb = this.state.lightbox;
     const raw = (this.props.showcaseUrl ?? "").trim();

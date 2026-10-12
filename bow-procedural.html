@@ -184,12 +184,12 @@ class Component extends DCLogic {
   componentWillUnmount() { window.removeEventListener("keydown", this._esc); }
   renderVals() {
     const chapters = [
-      { title: "String Control", body: "I use a control placed at the string position, with its offset zeroed out, to drive the string.", image: "assets/bow-string-control.png" },
-      { title: "Tense Control", body: "I use a control to handle the bow's tension offset, with the control's own values zeroed out. Its position is purely visual.", image: "assets/bow-tense-control.png" },
-      { title: "String joint offset", body: "I offset the string position by the string control Y position.", image: "assets/bow-string-joint-offset.png" },
-      { title: "Procedural draw", body: "I calculate the draw value and multiply it by the ratio to distribute the rotation. That result is then multiplied by a scalar that defines how much bend we want.", image: "assets/bow-procedural-draw.png" },
-      { title: "Tension Evaluation", body: "I calculate a normalized draw amount by subtracting the initial Y position from the current one and dividing by the maximum draw amount. I then evaluate this value through a curve to drive the tension controller's X position which control the frequency.", image: "assets/bow-tension-evaluation.png" },
-      { title: "Procedural Tension", body: "To apply the tension, I loop through one half of the bow and use the ratio to distribute the offset. I take the tension controller's X position, multiply it by the amplitude, then multiply by the ratio to give the final tension offset for each bone.", image: "assets/bow-procedural-tension.png" },
+      { title: "String Control", body: "I use a control placed at the string position, with its offset zeroed out, to drive the string.", image: "assets/bow-string-control.webp" },
+      { title: "Tense Control", body: "I use a control to handle the bow's tension offset, with the control's own values zeroed out. Its position is purely visual.", image: "assets/bow-tense-control.webp" },
+      { title: "String joint offset", body: "I offset the string position by the string control Y position.", image: "assets/bow-string-joint-offset.webp" },
+      { title: "Procedural draw", body: "I calculate the draw value and multiply it by the ratio to distribute the rotation. That result is then multiplied by a scalar that defines how much bend we want.", image: "assets/bow-procedural-draw.webp" },
+      { title: "Tension Evaluation", body: "I calculate a normalized draw amount by subtracting the initial Y position from the current one and dividing by the maximum draw amount. I then evaluate this value through a curve to drive the tension controller's X position which control the frequency.", image: "assets/bow-tension-evaluation.webp" },
+      { title: "Procedural Tension", body: "To apply the tension, I loop through one half of the bow and use the ratio to distribute the offset. I take the tension controller's X position, multiply it by the amplitude, then multiply by the ratio to give the final tension offset for each bone.", image: "assets/bow-procedural-tension.webp" },
       { title: "Compound bow In Engine", body: "In engine view of the Control rig.", video: "https://youtu.be/n1Ygr3ZjJMc" },
       { title: "Recurve Bow In Engine", body: "In engine view of the Control rig.", video: "https://youtu.be/BO2aov9PnWw" },
       { title: "Long bow In Engine", body: "In engine view of the Control rig.", video: "https://youtu.be/udWsEzycjn0" }
