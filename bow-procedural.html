@@ -190,9 +190,9 @@ class Component extends DCLogic {
       { title: "Procedural draw", body: "I calculate the draw value and multiply it by the ratio to distribute the rotation. That result is then multiplied by a scalar that defines how much bend we want.", image: "assets/bow-procedural-draw.png" },
       { title: "Tension Evaluation", body: "I calculate a normalized draw amount by subtracting the initial Y position from the current one and dividing by the maximum draw amount. I then evaluate this value through a curve to drive the tension controller's X position which control the frequency.", image: "assets/bow-tension-evaluation.png" },
       { title: "Procedural Tension", body: "To apply the tension, I loop through one half of the bow and use the ratio to distribute the offset. I take the tension controller's X position, multiply it by the amplitude, then multiply by the ratio to give the final tension offset for each bone.", image: "assets/bow-procedural-tension.png" },
-      { title: "Compound bow In Engine", body: "In engine view of the Control rig.", file: "assets/bow-compound-in-engine.mp4" },
-      { title: "Recurve Bow In Engine", body: "In engine view of the Control rig.", file: "assets/bow-recurve-in-engine.mp4" },
-      { title: "Long bow In Engine", body: "In engine view of the Control rig.", file: "assets/bow-longbow-in-engine.mp4" }
+      { title: "Compound bow In Engine", body: "In engine view of the Control rig.", video: "https://youtu.be/n1Ygr3ZjJMc" },
+      { title: "Recurve Bow In Engine", body: "In engine view of the Control rig.", video: "https://youtu.be/BO2aov9PnWw" },
+      { title: "Long bow In Engine", body: "In engine view of the Control rig.", video: "https://youtu.be/udWsEzycjn0" }
     ];
     const lb = this.state.lightbox;
     const raw = (this.props.showcaseUrl ?? "").trim();

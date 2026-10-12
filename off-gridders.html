@@ -211,10 +211,10 @@ class Component extends DCLogic {
       { title: "Module architecture", body: "The module contains the bone hierarchy needed from the master skeleton + additional bones.", image: "assets/breakdown-module-architecture.png" },
       { title: "BP hierarchy", body: "In the BP hierarchy, the master skeletal mesh is the parent, with the module slot skeletal meshes as children.", image: "assets/breakdown-bp-hierarchy.png" },
       { title: "Module Anim BP", body: "Each module has its own ABP set in the Post Process ABP of the Skeletal Mesh. We use the copy pose from mesh node to retrieve the bone positions from the locomotion skeletal mesh, then cache that pose for later use. We then have a state machine to mimic the character's main movement states and to have different secondary motion behaviors depending on the state. Inside those states, we only reuse the cached pose. We leverage the State Machine architecture to bind calculation functions to the Update of this node.", image: "assets/breakdown-module-anim-bp.png" },
-      { title: "Module isolated view", body: "The ear flip flop is procedural, based on the player state.", file: "assets/breakdown-module-isolated.mp4" },
-      { title: "Character customization result", body: "In-game character customisation.", file: "assets/breakdown-customization.mp4" },
+      { title: "Module isolated view", body: "The ear flip flop is procedural, based on the player state.", video: "https://youtu.be/LuS0kP-pG9s" },
+      { title: "Character customization result", body: "In-game character customisation.", video: "https://youtu.be/Od29pFfsHvw" },
       { title: "Layering logic", body: "Layered system based on Callum Longmire Advance Locomotion System.", image: "assets/breakdown-layering-logic.png" },
-      { title: "Layering result", body: "Base run loop anim / Run without ball overlay pose / In game output pose", file: "assets/breakdown-layering-result.mp4" },
+      { title: "Layering result", body: "Base run loop anim / Run without ball overlay pose / In game output pose", video: "https://youtu.be/1h2sMZEH4GM" },
       { title: "Locomotion result", body: "Full locomotion showcase.", video: "https://youtu.be/ZGdEQ3W6AQU" },
       { title: "Lobby poses", body: "Lobby poses with breathing additive applied.", video: "https://youtu.be/990cm6xC1SM" }
     ];
